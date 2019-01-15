@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<title>Student | My Profile</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Thasadith" rel="stylesheet">
+</head>
+<body>
+	<style >
+	body{
+		background-color: rgb(8,112,165);
+		font-family: 'Thasadith', sans-serif;
+		color: white;
+	}
+	.navbar{
+		background-color: rgb(0,75,114);
+	}
+	a, a:hover{
+		color: white;
+	}
+	.nav>li>a:hover{
+		background-color: rgb(49,66,77);
+	}
+
+	</style>
+	<script>	
+		function profile($scope,$http) {
+	        //var url = "http://npsevents.pythonanywhere.com/event/allEvents/?format=json";
+            //$http.get(url).then( function(response) {
+            //   $scope.allEventsData = response.data;
+            //});
+			$scope.data = {
+				name: "Pumpkin chariot",
+				grade: "1",
+				section: "C",
+				email: "madHatter@goofy.com"
+			};
+		}
+      </script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js">
+      </script>
+	<nav class="navbar navbar-expand-md navbar-fixed-top">
+		<a class="navbar-brand">The Logo</a>
+		 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+			<span class="">&#9776;</span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="student.html">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="studentMyEvent.html">My Events</a></li>
+				<li class="nav-item"><a class="nav-link" href="#progressReport">Progress Report</a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Notifications</a>
+					<ul class="dropdown-menu">
+						<span class="dropdown-item-text">one</span>
+						<div role="separator" class="dropdown-divider">
+						</div>
+						<span class="dropdown-item-text">two</span>
+						<div role="separator" class="dropdown-divider">
+						</div>
+						<span class="dropdown-item-text">three</span>
+					</ul>
+			</ul>
+			<ul class="nav navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="#">My Profile</a></li>
+				<li class="nav-item"><a class="nav-link" href="login.html">Log Out</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br><br><br>
+	<div class="container" ng-app="" ng-controller="profile">
+		<div class="row">
+			<div class="col-sm-8">
+				<h3> {{ data.name }}</h3>
+				<hr>
+				Class: {{ data.grade }} <br>
+				Section: {{ data.section }}<br>
+				House: {{ data.house }}<br>
+				Email ID: {{ data.email }}<br>
+			</div>
+			<div class="col-sm-4">
+				<img src="spiderman.jpg" width="300" height="240" class="rounded-circle" alt="Cinque Terre">
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
