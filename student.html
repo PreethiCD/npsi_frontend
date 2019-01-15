@@ -13,7 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Thasadith" rel="stylesheet">
 </head>
 <body>
-	<style>
+	<style >
 	body{
 		background-color: rgb(8,112,165);
 		font-family: 'Thasadith', sans-serif;
@@ -28,6 +28,42 @@
 	.nav>li>a:hover{
 		background-color: rgb(49,66,77);
 	}
+	.modal {
+	  color: black;
+	  display: none; /* Hidden by default */
+	  position: fixed; /* Stay in place */
+	  z-index: 1; /* Sit on top */
+	  left: 0;
+	  top: 0;
+	  width: 100%; /* Full width */
+	  height: 100%; /* Full height */
+	  overflow: auto; /* Enable scroll if needed */
+	  background-color: rgb(0,0,0); /* Fallback color */
+	  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	  padding-top: 60px;
+	}
+	.modal-content {
+	  margin: 5px auto; /* 15% from the top and centered */
+	  width: 50%; /* Could be more or less, depending on screen size */
+	  padding: 10px;
+	}
+	.close:hover {
+	  color: red;
+	}
+	.animate {
+	  -webkit-animation: animatezoom 0.6s;
+	  animation: animatezoom 0.6s
+	}
+
+	@-webkit-keyframes animatezoom {
+	  from {-webkit-transform: scale(0)} 
+	  to {-webkit-transform: scale(1)}
+	}
+
+	@keyframes animatezoom {
+	  from {transform: scale(0)} 
+	  to {transform: scale(1)}
+	}
 	</style>
 	<script>	
 		function allEvents($scope,$http) {
@@ -35,6 +71,12 @@
             $http.get(url).then( function(response) {
                $scope.allEventsData = response.data;
             });
+			$scope.showPopUp = function (id) {
+				document.getElementById(id).style.display = "block";
+			};
+			$scope.hidePopUp = function (id) {
+				document.getElementById(id).style.display = "none";
+			};
 		}
       </script>
       <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js">
@@ -42,7 +84,7 @@
 	<nav class="navbar navbar-expand-md navbar-fixed-top">
 		<a class="navbar-brand">The Logo</a>
 		 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
-			<span>&#9776;</span>
+			<span class="">&#9776;</span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="nav navbar-nav mr-auto">
@@ -70,6 +112,19 @@
 	<br><br><br>
 	<h1 class="text-center">All Events</h2>
 	<div class="container"  ng-app = "" ng-controller="allEvents">
+		<div ng-repeat="event in allEventsData">
+			<div ng-attr-id="{{event.id}}" class="modal">
+				<div class="modal-content animate">
+					<h3>{{ event.eventName }}
+					<span ng-click="hidePopUp(event.id)" class="close">&times;</span><hr></h3>
+					<h6>{{ event.eventOwner }}</h6>
+					<p>{{ event.eventDescription }}</p>
+					<h5>Date : <small> {{ event.eventStartDate }}, Dashday</small></h5>
+					<br>
+					<button class="btn btn-primary">Register</button>
+				</div>
+			</div>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -84,7 +139,7 @@
 					<td>{{ event.eventName }}</td>
 					<td>{{ event.eventOwner }}</td>
 					<td>{{ event.eventStartDate }} <br> <small> {{ event.eventStartDay }} </small></td>
-					<td><button id="register" onclick="register()" class="btn btn-success">Register</button></td>
+					<td><button id="register" ng-click="showPopUp(event.id)" class="btn btn-success">Register</button></td>
 				</tr>
 			</tbody>
 		</table>
