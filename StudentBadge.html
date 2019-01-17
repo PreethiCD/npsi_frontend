@@ -132,7 +132,7 @@
             //$http.get(url).then( function(response) {
             //   $scope.allEventsData = response.data;
             //});
-			$scope.data = [
+			$scope.data = [   // FAKE DATA 
 				{
 					id:1,
 					eventName:"first",
@@ -147,6 +147,7 @@
 			$scope.participating = [];
 			$scope.showPopUp = function (id) {
 				document.getElementById(id).style.display = "block";
+				$scope.participating = [];
 			};
 			$scope.hidePopUp = function (id) {
 				document.getElementById(id).style.display = "none";
@@ -163,6 +164,8 @@
 			};
 			$scope.submitList = function(eventId){
 				//CHUCK DATA TO SOMEWHERE ELSE
+				$scope.participating = [];
+				$scope.hidePopUp(eventId);
 			}
 		}
 </script>
