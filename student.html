@@ -126,7 +126,7 @@
 					<p>{{ event.eventDescription }}</p>
 					<h5>Date : <small> {{ event.eventStartDate }}, Dashday</small></h5>
 					<br>
-					<button ng-click="register(event.id)" class="btn btn-primary">Register</button>
+					<button ng-click="register(event.id);hidePopUp(event.id)" class="btn btn-primary">Register</button>
 				</div>
 			</div>
 		</div>
