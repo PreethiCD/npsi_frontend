@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+	<title>Student | My Events</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Thasadith" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-info navbar-fixed-top">
+		<a class="navbar-brand">The Logo</a>
+		 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+			<span class="">&#9776;</span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="student.html">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="allEvents.html">All Events</a></li>
+				<li class="nav-item"><a class="nav-link" href="myEvents.html">My Events</a></li>
+				<li class="nav-item"><a class="nav-link" href="progressReport.html">Progress Report</a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Notifications</a>
+					<ul class="dropdown-menu">
+						<span class="dropdown-item-text">one</span>
+						<div role="separator" class="dropdown-divider">
+						</div>
+						<span class="dropdown-item-text">two</span>
+						<div role="separator" class="dropdown-divider">
+						</div>
+						<span class="dropdown-item-text">three</span>
+					</ul>
+			</ul>
+			<ul class="nav navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="myProfile.html">My Profile</a></li>
+				<li class="nav-item"><a class="nav-link" href="logout.html">Log Out</a></li>
+
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<style>
+	body{
+		font-family: 'Thasadith', sans-serif;
+	}
+	</style>
+	<script>	
+		function allEvents($scope,$http) {
+	        var url = "http://npsevents.pythonanywhere.com/event/allEvents/?format=json";
+            $http.get(url).then( function(response) {
+               $scope.allEventsData = response.data;
+			   $scope.temp=[];
+			   $scope.eventDeck=[];
+			   for(i=0;i<response.data.length;i++){
+					$scope.temp[i%4]=response.data[i];
+					if(i%4==3 || i==(response.data.length-1)){
+						$scope.eventDeck[Math.floor(i/4)]=$scope.temp;
+						$scope.temp=[];
+					}
+			   }
+			   console.log($scope.eventDeck);
+            });
+		}
+    </script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	<br><br>
+    <div class = "container" ng-app = "" ng-controller="allEvents">
+		<h1  class="text-center">My Events</h1><br><br>
+		<div class="card-deck" ng-repeat="group in eventDeck">
+			<div class=" col-sm-4 border-info mb-3 card text-centre" style = "background-color:#d9edf7;" ng-repeat="event in group">
+				<div class="card-body">
+					<h4>{{ event.eventName }}<hr></h4>
+					<h6>{{ event.eventOwner }}</h6>
+					<p>{{ event.eventDescription }}</p>
+					<h5>Date : <small> {{ event.eventStartDate }}, Dashday</small></h5>
+					<br>
+				</div>
+			</div><br><br>
+ 
+		</div>
+	</div>
+
+
+</div>
+</body>
+</html>
+
