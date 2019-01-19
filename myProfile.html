@@ -14,8 +14,9 @@
 </head>
 <body>
 	<style >
-	body{
-		background-color: rgb(8,112,165);
+	html, body{
+		height: 100%;
+		background-image: linear-gradient(to bottom right,#1CB5E0,#000046);
 		font-family: 'Thasadith', sans-serif;
 		color: white;
 	}
@@ -50,7 +51,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="nav navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="student.html">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="studentMyEvent.html">My Events</a></li>
+				<li class="nav-item"><a class="nav-link" href="myEvents.html">My Events</a></li>
 				<li class="nav-item"><a class="nav-link" href="#progressReport">Progress Report</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Notifications</a>
@@ -74,15 +75,12 @@
 	<div class="container" ng-app="" ng-controller="profile">
 		<div class="row">
 			<div class="col-sm-8">
-				<h3> {{ data.name }}</h3>
+				<h3><b> {{ data.name }} </b></h3>
 				<hr>
 				Class: {{ data.grade }} <br>
 				Section: {{ data.section }}<br>
 				House: {{ data.house }}<br>
 				Email ID: {{ data.email }}<br>
-			</div>
-			<div class="col-sm-4">
-				<img src="spiderman.jpg" width="300" height="240" class="rounded-circle" alt="Cinque Terre">
 			</div>
 		</div>
 	</div>
