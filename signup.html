@@ -29,6 +29,9 @@
 		app.controller("sign-up",function ($scope) {
 			$scope.class = 1;
 			$scope.role = "Student";
+			$scope.section = "A";
+			$scope.house = "Challengers";
+			$scope.Association = "";
 			$scope.Next = function (role){
 				console.log(role);
 				document.getElementById(role).style.display = "block";
