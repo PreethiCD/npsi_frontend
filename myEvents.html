@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>Student | My Events</title>
+	<title>Student | Home</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -12,6 +12,12 @@
 </head>
 <body>
 
+<style>
+
+</style>
+<script>
+</script>
+
 <nav class="navbar navbar-expand-md navbar-light bg-info navbar-fixed-top">
 		<a class="navbar-brand">The Logo</a>
 		 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
@@ -19,10 +25,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="nav navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="student.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="allEvents.html">All Events</a></li>
+				<li class="nav-item"><a class="nav-link" href="studentHome.html">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="allEvents.html">All Events</a></li>
 				<li class="nav-item"><a class="nav-link" href="myEvents.html">My Events</a></li>
 				<li class="nav-item"><a class="nav-link" href="progressReport.html">Progress Report</a></li>
+                               
+
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Notifications</a>
 					<ul class="dropdown-menu">
@@ -42,50 +50,33 @@
 			</ul>
 		</div>
 	</nav>
-	<br>
-	<style>
-	body{
-		font-family: 'Thasadith', sans-serif;
-	}
-	</style>
-	<script>	
-		function allEvents($scope,$http) {
-	        var url = "http://npsevents.pythonanywhere.com/event/allEvents/?format=json";
-            $http.get(url).then( function(response) {
-               $scope.allEventsData = response.data;
-			   $scope.temp=[];
-			   $scope.eventDeck=[];
-			   for(i=0;i<response.data.length;i++){
-					$scope.temp[i%4]=response.data[i];
-					if(i%4==3 || i==(response.data.length-1)){
-						$scope.eventDeck[Math.floor(i/4)]=$scope.temp;
-						$scope.temp=[];
-					}
-			   }
-			   console.log($scope.eventDeck);
-            });
-		}
-    </script>
-    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-	<br><br>
-    <div class = "container" ng-app = "" ng-controller="allEvents">
-		<h1  class="text-center">My Events</h1><br><br>
-		<div class="card-deck" ng-repeat="group in eventDeck">
-			<div class=" col-sm-4 border-info mb-3 card text-centre" style = "background-color:#d9edf7;" ng-repeat="event in group">
-				<div class="card-body">
-					<h4>{{ event.eventName }}<hr></h4>
-					<h6>{{ event.eventOwner }}</h6>
-					<p>{{ event.eventDescription }}</p>
-					<h5>Date : <small> {{ event.eventStartDate }}, Dashday</small></h5>
-					<br>
-				</div>
-			</div><br><br>
- 
-		</div>
-	</div>
+	<br><br><br>
+
+<div class="container">
 
 
-</div>
+
+	
+	
+	<h2 id="myEvents" class="text-center">My Events</h2>
+
+	<table class="table table-hover">
+		<tbody>
+			{% for event in myEventsList %}
+			<tr class="row">
+				<td class="col-sm-9" style="padding-left: 80px;">
+					<h4>{{ event.eventName|upper }}</h4><br>
+					{{ event.eventOwner }}<br><!-- association name -->
+					{{ event.description }}
+				</td>
+				<td class="col-sm-3">
+					{{ event.date }}<br>
+					<small>{{ event.day }}</small>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
 </body>
 </html>
-
